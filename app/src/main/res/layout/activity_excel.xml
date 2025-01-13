@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- RecyclerView for displaying Excel files -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_excel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- No Files Container -->
+    <LinearLayout
+        android:id="@+id/no_files_container_excel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <!-- No Files Icon -->
+        <ImageView
+            android:id="@+id/no_files_icon_excel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/no_files"
+            android:scaleType="fitCenter" />
+
+        <!-- No Files Text -->
+        <TextView
+            android:id="@+id/no_files_text_excel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Excel files available"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+</RelativeLayout>

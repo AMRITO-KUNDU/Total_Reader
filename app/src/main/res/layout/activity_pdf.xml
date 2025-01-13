@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- RecyclerView for listing PDF files -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_pdf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- No Files Found Container -->
+    <LinearLayout
+        android:id="@+id/no_files_container_pdf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <!-- No Files Icon -->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/no_files"
+            android:contentDescription="No files icon"
+            android:scaleType="centerInside" />
+
+        <!-- No Files Text -->
+        <TextView
+            android:id="@+id/no_files_text_pdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No PDF files found"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center" />
+    </LinearLayout>
+</RelativeLayout>
+
+

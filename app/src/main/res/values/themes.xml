@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TotalReader" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary color of your app -->
+        <item name="colorPrimary">#6200EE</item>
+        <!-- Primary dark color, affects the status bar -->
+        <item name="colorPrimaryDark">#000000</item> <!-- This sets the status bar color -->
+        <item name="colorAccent">#03DAC5</item>
+        <item name="android:statusBarColor">#000000</item> <!-- Set to black -->
+
+    </style>
+
+    <style name="Theme.TotalReader" parent="Base.Theme.TotalReader" />
+</resources>

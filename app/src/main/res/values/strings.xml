@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Total Reader</string>
+    <string name="folder_icon">folder icon string</string>
+    <string name="pdf_icon">pdf file icon</string>
+</resources>
