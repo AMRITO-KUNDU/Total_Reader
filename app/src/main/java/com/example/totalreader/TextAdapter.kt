@@ -39,3 +39,4 @@ class TextAdapter(
         return textFiles.size
     }
 }
+
