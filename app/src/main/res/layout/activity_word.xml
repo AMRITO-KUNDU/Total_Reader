@@ -3,14 +3,16 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- RecyclerView for displaying Word files -->
+    <!-- RecyclerView for listing Word files -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_word"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false" />
 
-    <!-- No Files Container -->
+    <!-- No Files Found Container -->
     <LinearLayout
         android:id="@+id/no_files_container_word"
         android:layout_width="wrap_content"
@@ -22,21 +24,20 @@
 
         <!-- No Files Icon -->
         <ImageView
-            android:id="@+id/no_files_icon_word"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/no_files"
-            android:scaleType="fitCenter" />
+            android:contentDescription="No files icon"
+            android:scaleType="centerInside" />
 
         <!-- No Files Text -->
         <TextView
-            android:id="@+id/no_files_text_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No Word files available"
-            android:textSize="16sp"
-            android:gravity="center"
             android:layout_marginTop="16dp"
-            android:textColor="@android:color/black" />
+            android:text="No Word files found"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:gravity="center" />
     </LinearLayout>
 </RelativeLayout>

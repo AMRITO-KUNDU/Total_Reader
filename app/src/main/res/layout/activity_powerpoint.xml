@@ -3,16 +3,18 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- RecyclerView for PowerPoint files -->
+    <!-- RecyclerView for listing PowerPoint files -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_powerpoint"
+        android:id="@+id/recycler_view_ppt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false" />
 
-    <!-- Centered Layout for 'No Files' message and SVG -->
+    <!-- No Files Found Container -->
     <LinearLayout
-        android:id="@+id/no_files_container_powerpoint"
+        android:id="@+id/no_files_container_ppt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -20,23 +22,22 @@
         android:gravity="center"
         android:visibility="gone">
 
-        <!-- SVG Icon -->
+        <!-- No Files Icon -->
         <ImageView
-            android:id="@+id/no_files_icon_powerpoint"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/no_files" />
+            android:src="@drawable/no_files"
+            android:contentDescription="No files icon"
+            android:scaleType="centerInside" />
 
         <!-- No Files Text -->
         <TextView
-            android:id="@+id/no_files_text_powerpoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="No PowerPoint files available"
+            android:text="No PowerPoint files found"
+            android:textSize="16sp"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:gravity="center" />
     </LinearLayout>
 </RelativeLayout>

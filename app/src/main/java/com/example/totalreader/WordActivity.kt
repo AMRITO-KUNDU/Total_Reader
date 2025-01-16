@@ -3,6 +3,7 @@ package com.example.totalreader
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
+import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +13,8 @@ import java.io.File
 class WordActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var noFilesContainer: View
+    private lateinit var noFilesContainer: LinearLayout
     private val wordFiles = mutableListOf<File>()
-    private lateinit var wordAdapter: WordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,43 +32,40 @@ class WordActivity : AppCompatActivity() {
         noFilesContainer = findViewById(R.id.no_files_container_word)
     }
 
-    // Set up the RecyclerView
+    // Set up RecyclerView
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        wordAdapter = WordAdapter(wordFiles) { file ->
+        recyclerView.adapter = WordAdapter(this, wordFiles) { file ->
             openWordFile(file) // Handle Word file click
         }
-        recyclerView.adapter = wordAdapter
     }
 
-    // Load Word files and manage UI visibility
+    // Load Word files and toggle visibility of UI elements
     private fun loadWordFiles() {
-        val rootDir = Environment.getExternalStorageDirectory()
-        val extensions = arrayOf("doc", "docx")
-        searchForWordFiles(rootDir, extensions)
+        val storageDir = Environment.getExternalStorageDirectory()
+        searchForWordFiles(storageDir)
 
         if (wordFiles.isEmpty()) {
             showNoFilesFound()
         } else {
             showFilesList()
         }
-
-        wordAdapter.notifyDataSetChanged()
     }
 
-    // Recursive search for Word files in the directory
-    private fun searchForWordFiles(directory: File, extensions: Array<String>) {
+    // Recursively search for Word files in a directory
+    private fun searchForWordFiles(directory: File) {
         val files = directory.listFiles() ?: return
         for (file in files) {
             if (file.isDirectory) {
-                searchForWordFiles(file, extensions)
-            } else if (file.extension.lowercase() in extensions) {
+                searchForWordFiles(file) // Recursive call
+            } else if (file.name.endsWith(".doc", ignoreCase = true) ||
+                file.name.endsWith(".docx", ignoreCase = true)) {
                 wordFiles.add(file)
             }
         }
     }
 
-    // Show "No Files Found" container
+    // Show the "No Word Files Found" container
     private fun showNoFilesFound() {
         noFilesContainer.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
@@ -80,7 +77,7 @@ class WordActivity : AppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
     }
 
-    // Handle back navigation with animation
+    // Handle back navigation with custom animation
     private fun setupBackNavigation() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -90,8 +87,8 @@ class WordActivity : AppCompatActivity() {
         })
     }
 
-    // Placeholder to open Word files
+    // Placeholder for opening a Word file
     private fun openWordFile(file: File) {
-        // Implement file opening logic (e.g., launch an external Word viewer)
+        // Implement file opening logic here (e.g., launch a Word viewer)
     }
 }

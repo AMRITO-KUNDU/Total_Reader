@@ -14,24 +14,71 @@ class TextActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var noFilesContainer: LinearLayout
-    private lateinit var adapter: TextAdapter
     private val textFiles = mutableListOf<File>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text)
 
-        recyclerView = findViewById(R.id.recycler_view_text)
-        noFilesContainer = findViewById(R.id.no_files_container)
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = TextAdapter(this, textFiles)
-        recyclerView.adapter = adapter
-
-        // Load text files and show/hide UI elements
+        initViews()
+        setupRecyclerView()
         loadTextFiles()
+        setupBackNavigation()
+    }
 
-        // Handle back navigation with animation
+    // Initialize views
+    private fun initViews() {
+        recyclerView = findViewById(R.id.recycler_view_txt)
+        noFilesContainer = findViewById(R.id.no_files_container_txt)
+    }
+
+    // Set up RecyclerView
+    private fun setupRecyclerView() {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = TextAdapter(this, textFiles) { file ->
+            openTextFile(file) // Handle text file click
+        }
+
+    }
+
+    // Load text files and toggle visibility of UI elements
+    private fun loadTextFiles() {
+        val storageDir = Environment.getExternalStorageDirectory()
+        searchForTextFiles(storageDir)
+
+        if (textFiles.isEmpty()) {
+            showNoFilesFound()
+        } else {
+            showFilesList()
+        }
+    }
+
+    // Recursively search for text files in a directory
+    private fun searchForTextFiles(directory: File) {
+        val files = directory.listFiles() ?: return
+        for (file in files) {
+            if (file.isDirectory) {
+                searchForTextFiles(file) // Recursive call
+            } else if (file.name.endsWith(".txt", ignoreCase = true)) {
+                textFiles.add(file)
+            }
+        }
+    }
+
+    // Show the "No Text Files Found" container
+    private fun showNoFilesFound() {
+        noFilesContainer.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
+
+    // Show the RecyclerView with the list of text files
+    private fun showFilesList() {
+        noFilesContainer.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
+    }
+
+    // Handle back navigation with custom animation
+    private fun setupBackNavigation() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 finish()
@@ -40,29 +87,8 @@ class TextActivity : AppCompatActivity() {
         })
     }
 
-    private fun loadTextFiles() {
-        val storageDir = Environment.getExternalStorageDirectory()
-        searchForTextFiles(storageDir)
-
-        if (textFiles.isNotEmpty()) {
-            noFilesContainer.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
-        } else {
-            noFilesContainer.visibility = View.VISIBLE
-            recyclerView.visibility = View.GONE
-        }
-
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun searchForTextFiles(directory: File) {
-        val files = directory.listFiles() ?: return
-        for (file in files) {
-            if (file.isDirectory) {
-                searchForTextFiles(file)
-            } else if (file.name.endsWith(".txt", true)) {
-                textFiles.add(file)
-            }
-        }
+    // Placeholder for opening a text file
+    private fun openTextFile(file: File) {
+        // Implement file opening logic here (e.g., display content in a new activity or dialog)
     }
 }

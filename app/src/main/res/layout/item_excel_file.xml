@@ -2,14 +2,36 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical">
 
+    <!-- Excel Icon -->
+    <ImageView
+        android:id="@+id/excel_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="12dp"
+        android:src="@drawable/excel"
+        android:contentDescription="Excel icon" />
+
+    <!-- File Name -->
     <TextView
-        android:id="@+id/file_name_text"
-        android:layout_width="match_parent"
+        android:id="@+id/excel_file_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:textSize="16sp"
         android:textColor="@android:color/black"
-        android:ellipsize="end"
-        android:maxLines="1" />
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <!-- File Size (Optional) -->
+    <TextView
+        android:id="@+id/excel_file_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
 </LinearLayout>

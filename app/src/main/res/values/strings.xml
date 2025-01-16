@@ -2,4 +2,14 @@
     <string name="app_name">Total Reader</string>
     <string name="folder_icon">folder icon string</string>
     <string name="pdf_icon">pdf file icon</string>
+    <string name="pdf_folder">PDF Folder</string>
+    <string name="pdf_files">PDF Files</string>
+    <string name="word_folder">Word Folder</string>
+    <string name="word_files">Word Files</string>
+    <string name="excel_folder">Excel Folder</string>
+    <string name="excel_files">Excel Files</string>
+    <string name="powerpoint_folder">PowerPoint Folder</string>
+    <string name="powerpoint_files">PowerPoint Files</string>
+    <string name="text_folder">Text Folder</string>
+    <string name="text_files">Text Files</string>
 </resources>

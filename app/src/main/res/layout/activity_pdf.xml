@@ -8,7 +8,9 @@
         android:id="@+id/recycler_view_pdf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false" />
 
     <!-- No Files Found Container -->
     <LinearLayout
@@ -30,7 +32,6 @@
 
         <!-- No Files Text -->
         <TextView
-            android:id="@+id/no_files_text_pdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -40,5 +41,3 @@
             android:gravity="center" />
     </LinearLayout>
 </RelativeLayout>
-
-

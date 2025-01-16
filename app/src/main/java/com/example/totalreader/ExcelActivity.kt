@@ -3,6 +3,7 @@ package com.example.totalreader
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
+import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,9 +13,8 @@ import java.io.File
 class ExcelActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var noFilesContainer: View
+    private lateinit var noFilesContainer: LinearLayout
     private val excelFiles = mutableListOf<File>()
-    private lateinit var excelAdapter: ExcelAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,43 +32,40 @@ class ExcelActivity : AppCompatActivity() {
         noFilesContainer = findViewById(R.id.no_files_container_excel)
     }
 
-    // Set up the RecyclerView
+    // Set up RecyclerView
     private fun setupRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        excelAdapter = ExcelAdapter(this, excelFiles) { file ->
+        recyclerView.adapter = ExcelAdapter(this, excelFiles) { file ->
             openExcelFile(file) // Handle Excel file click
         }
-        recyclerView.adapter = excelAdapter
     }
 
-    // Load Excel files and manage UI visibility
+    // Load Excel files and toggle visibility of UI elements
     private fun loadExcelFiles() {
-        val rootDir = Environment.getExternalStorageDirectory()
-        val extensions = arrayOf("xls", "xlsx")
-        searchForExcelFiles(rootDir, extensions)
+        val storageDir = Environment.getExternalStorageDirectory()
+        searchForExcelFiles(storageDir)
 
         if (excelFiles.isEmpty()) {
             showNoFilesFound()
         } else {
             showFilesList()
         }
-
-        excelAdapter.notifyDataSetChanged()
     }
 
-    // Recursive search for Excel files in the directory
-    private fun searchForExcelFiles(directory: File, extensions: Array<String>) {
+    // Recursively search for Excel files in a directory
+    private fun searchForExcelFiles(directory: File) {
         val files = directory.listFiles() ?: return
         for (file in files) {
             if (file.isDirectory) {
-                searchForExcelFiles(file, extensions)
-            } else if (file.extension.lowercase() in extensions) {
+                searchForExcelFiles(file) // Recursive call
+            } else if (file.name.endsWith(".xls", ignoreCase = true) ||
+                file.name.endsWith(".xlsx", ignoreCase = true)) {
                 excelFiles.add(file)
             }
         }
     }
 
-    // Show "No Files Found" container
+    // Show the "No Excel Files Found" container
     private fun showNoFilesFound() {
         noFilesContainer.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
@@ -80,7 +77,7 @@ class ExcelActivity : AppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
     }
 
-    // Handle back navigation with animation
+    // Handle back navigation with custom animation
     private fun setupBackNavigation() {
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -90,11 +87,8 @@ class ExcelActivity : AppCompatActivity() {
         })
     }
 
-    // Placeholder to open Excel files
+    // Placeholder for opening an Excel file
     private fun openExcelFile(file: File) {
-        // Implement file opening logic (e.g., launch an external Excel viewer)
+        // Implement file opening logic here (e.g., launch an Excel viewer)
     }
 }
-
-
-

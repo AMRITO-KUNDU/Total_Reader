@@ -17,22 +17,23 @@
         android:background="@drawable/folder_background"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/pdf"
-            android:contentDescription="PDF Folder"/>
+            android:contentDescription="@string/pdf_folder" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="PDF Files"
+            android:text="@string/pdf_files"
             android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <!-- Word Folder -->
@@ -45,22 +46,23 @@
         android:background="@drawable/folder_background"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/word"
-            android:contentDescription="Word Folder"/>
+            android:contentDescription="@string/word_folder" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="Word Files"
+            android:text="@string/word_files"
             android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <!-- Excel Folder -->
@@ -73,22 +75,23 @@
         android:background="@drawable/folder_background"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/excel"
-            android:contentDescription="Excel Folder"/>
+            android:contentDescription="@string/excel_folder" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="Excel Files"
+            android:text="@string/excel_files"
             android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <!-- PowerPoint Folder -->
@@ -101,22 +104,23 @@
         android:background="@drawable/folder_background"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/powerpoint"
-            android:contentDescription="PowerPoint Folder"/>
+            android:contentDescription="@string/powerpoint_folder" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="PowerPoint Files"
+            android:text="@string/powerpoint_files"
             android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <!-- Text Folder -->
@@ -129,21 +133,22 @@
         android:background="@drawable/folder_background"
         android:clickable="true"
         android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/text"
-            android:contentDescription="Text Folder"/>
+            android:contentDescription="@string/text_folder" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
-            android:text="Text Files"
+            android:text="@string/text_files"
             android:textSize="18sp"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
     </LinearLayout>
 </LinearLayout>
